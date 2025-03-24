@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
-const Menu = ({ name, branch }) => {
+const Menu = ({ name, branches }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -18,18 +19,18 @@ const Menu = ({ name, branch }) => {
             </button>
 
             <div
-                className={`absolute right-0 md:right-0 w-80 bg-white shadow-lg rounded-md transition-all duration-200 ${
+                className={`absolute right-0 w-80 bg-white shadow-lg rounded-md transition-all duration-200 ${
                     isOpen ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"
                 }`}
             >
-                {branch.map((b, index) => (
-                    <a
+                {branches.map((branch, index) => (
+                    <Link
                         key={index}
-                        href="#"
+                        to={branch.route}
                         className="block px-4 py-5 text-xl text-gray-800 hover:bg-gray-200"
                     >
-                        {b}
-                    </a>
+                        {branch.name}
+                    </Link>
                 ))}
             </div>
         </div>

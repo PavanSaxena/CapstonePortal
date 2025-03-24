@@ -4,22 +4,25 @@ import Menu from "./Menu"
 const campus = [
     {
         name: "Staff",
-        branch: ["A to Z",
-            "Domain",
+        branch: [
+            { name: "A to Z", route: "/staff/a-to-z" },
+            { name: "Domain", route: "/" },
         ],
     },
     {
         name: "EC Campus",
-        branch: ["Computer Science",
-            "Electronics and Communications",
+        branch: [
+            { name: "Computer Science", route: "/ec-campus/computer-science" },
+            { name: "Electronics and Communications", route: "/ec-campus/electronics-communications" },
         ],
     },
     {
         name: "RR Campus",
-        branch: ["Computer Science",
-            "Electronics and Communications",
-            "Electrical",
-            "Mechanical",
+        branch: [
+            { name: "Computer Science", route: "/rr-campus/computer-science" },
+            { name: "Electronics and Communications", route: "/rr-campus/electronics-communications" },
+            { name: "Electrical", route: "/rr-campus/electrical" },
+            { name: "Mechanical", route: "/rr-campus/mechanical" },
         ],
     }
 ]
@@ -39,10 +42,9 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="flex gap-20 mr-10 items-center">
-                    {campus.map((campus, index) => {
-                        return <Menu key={index} {...campus} />
-                    })}
-                    {/* <button className="text-2xl bg-blue-950 text-white rounded-md px-5 py-2">Login</button> */}
+                    {campus.map((campusItem, index) => (
+                        <Menu key={index} name={campusItem.name} branches={campusItem.branch} />
+                    ))}
                 </div>
             </div>
         </nav>

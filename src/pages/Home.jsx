@@ -7,7 +7,7 @@ const allowedDomains = [
   "AI",
   "Artificial Intelligence",
   "Augmented & Virtual Reality",
-  "Blockchain",
+  "Blockchain Technology",
   "Cloud Computing",
   "Computer Networks",
   "Computer Vision",
@@ -35,7 +35,6 @@ const groupByDomain = (facultyList) => {
   facultyList.forEach((faculty) => {
     Object.keys(faculty).forEach((key) => {
       if (key.startsWith("Domain-") && faculty[key]) {
-        // Check for partial match
         const matchedDomain = allowedDomains.find((allowed) =>
           faculty[key].toLowerCase().includes(allowed.toLowerCase())
         );
@@ -72,14 +71,20 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-blue-950 mb-4">{domain}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {facultyList.map((faculty, index) => (
-              <Tile
-                key={index}
-                image={faculty["Image URL"]}
-                name={faculty["Name"]}
-                role={faculty["Designation"]}
-                email={faculty["Email"]}
-                slots={4}
-              />
+            <Tile
+              key={index}
+              image={faculty["Image URL"]}
+              name={faculty["Name"]}
+              role={faculty["Designation"]}
+              email={faculty["Email"]}
+              info={faculty["Profile URL"]}
+              domains={[
+                faculty["Domain-1"],
+                faculty["Domain-2"],
+                faculty["Domain-3"]
+              ].filter(Boolean)}
+              slots={4}
+            />            
             ))}
           </div>
         </div>
